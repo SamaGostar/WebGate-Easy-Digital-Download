@@ -71,7 +71,7 @@ function zp_process($purchase_data) {
         $accesspage = ( $edd_options['zp_webgate'] == '1' ) ? 'https://www.zarinpal.com/pg/StartPay/%s' : 'https://www.zarinpal.com/pg/StartPay/%s/ZarinGate';
 
 
-        $client = new SoapClient($endpoint, array('encoding' => 'UTF-8'));
+        $client = new SoapClient($endpoint, array('encoding' => 'UTF-8', 'keep_alive' => false));
 
 
         $data = array(
@@ -110,7 +110,7 @@ function zp_verify() {
         if ($_GET['Status'] == 'OK') {
             $endpoint = ( $edd_options['zp_deserver'] == '1' ) ? 'https://de.zarinpal.com/pg/services/WebGate/wsdl' : 'https://ir.zarinpal.com/pg/services/WebGate/wsdl';
 
-            $client = new SoapClient($endpoint, array('encoding' => 'UTF-8'));
+            $client = new SoapClient($endpoint, array('encoding' => 'UTF-8', 'keep_alive' => false));
 
             //$amount = intval( edd_get_payment_amount( $payment_id ) ) / 10;
             $amount = intval(edd_get_payment_amount($payment_id)) / 10;
